@@ -73,11 +73,10 @@ st.write("Welcome! This chatbot helps you analyze and interact with legal cases.
 
 # Get the API key
 def get_api_key():
-    try:
-        return st.secrets["google_api_key"]["key"]
-    except KeyError:
-        st.error("Google API key is missing from secrets!")
-        return None
+    if "api_key" not in st.session_state:
+        st.session_state["api_key"] = ""
+    api_key = st.text_input("Enter your API key", type="password")
+    return api_key
 
 api_key = get_api_key()
 
