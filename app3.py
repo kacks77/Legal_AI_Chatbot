@@ -79,7 +79,7 @@ def get_api_key():
     
 
 api_key = get_api_key()
-
+print(st.secrets)  
 
 if api_key:
     legal_ai = LegalAI(api_key)
