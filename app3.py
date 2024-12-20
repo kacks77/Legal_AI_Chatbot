@@ -71,7 +71,11 @@ st.title("Legal AI Assistant")
 st.write("Welcome! This chatbot helps you analyze and interact with legal cases.")
 
 def get_api_key():
-    return st.secrets["general"]["google_api_key"]
+    try:
+        return st.secrets["general"]["google_api_key"]
+    except KeyError:
+        st.error("Google API key is missing from secrets!")
+        return None
 
 api_key = get_api_key()
 
