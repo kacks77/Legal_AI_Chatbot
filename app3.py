@@ -12,6 +12,7 @@ import json
 from langdetect import detect
 from PyPDF2 import PdfReader
 from docx import Document
+
 from deep_translator import GoogleTranslator
 import re
 
