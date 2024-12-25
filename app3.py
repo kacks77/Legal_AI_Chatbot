@@ -72,12 +72,9 @@ st.title("Legal AI Assistant")
 st.write("Welcome! This chatbot helps you analyze and interact with legal cases.")
 
 # Get the API key
-def get_api_key():
-    if "api_key" not in st.session_state:
-        st.session_state["api_key"] = ""
-    return st.text_input("Enter your API key", type="password")
+api_key = st.secrets["general"]["api_key"]
 
-api_key = get_api_key()
+st.write("API Key Loaded: ", api_key) 
 
 # If API key is provided, start the assistant
 if api_key:
