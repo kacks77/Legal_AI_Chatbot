@@ -5,3 +5,4 @@ langchain-google-genai
 langchain-community
 langdetect
 PyPDF2
+python-docx
