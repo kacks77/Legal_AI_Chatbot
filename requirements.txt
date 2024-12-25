@@ -3,3 +3,4 @@ openai
 langchain
 langchain-google-genai
 langchain-community
+langdetect
