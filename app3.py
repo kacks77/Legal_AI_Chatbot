@@ -1,4 +1,5 @@
 import openai
+import langdetect 
 from langchain.prompts import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
