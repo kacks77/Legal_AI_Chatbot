@@ -74,7 +74,7 @@ st.write("Welcome! This chatbot helps you analyze and interact with legal cases.
 # Get the API key
 api_key = st.secrets["general"]["api_key"]
 
-st.write("API Key Loaded: ", api_key) 
+st.write(api_key) 
 
 # If API key is provided, start the assistant
 if api_key:
