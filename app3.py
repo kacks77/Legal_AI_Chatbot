@@ -1,5 +1,5 @@
 import openai
-import langdetect 
+import langdetect
 from langchain.prompts import (
     ChatPromptTemplate,
     SystemMessagePromptTemplate,
@@ -13,7 +13,6 @@ import json
 from langdetect import detect
 from PyPDF2 import PdfReader
 from docx import Document
-
 from deep_translator import GoogleTranslator
 import re
 
@@ -71,15 +70,21 @@ st.set_page_config(page_title="Legal AI Assistant", page_icon="⚖️")
 st.title("Legal AI Assistant")
 st.write("Welcome! This chatbot helps you analyze and interact with legal cases.")
 
-# Get the API key
-api_key = st.secrets["general"]["api_key"]
+# Get the API key from the user
+if "api_key" not in st.session_state:
+    st.session_state.api_key = None
 
-st.write("API Key Loaded: ", api_key) 
-
-# If API key is provided, start the assistant
-if api_key:
-    legal_ai = LegalAI(api_key)
-    st.write("You can now interact with the legal AI assistant.")
+if st.session_state.api_key is None:
+    api_key_input = st.text_input("Enter your API key:", type="password")
+    if st.button("Submit API Key"):
+        if api_key_input:
+            st.session_state.api_key = api_key_input
+            st.success("API key set successfully!")
+        else:
+            st.error("Please enter a valid API key.")
+else:
+    st.write("API Key Loaded.")
+    legal_ai = LegalAI(st.session_state.api_key)
 
     # Upload and process legal documents
     uploaded_doc = st.file_uploader("Upload a Legal Document (PDF or DOCX)", type=["pdf", "docx"])
@@ -192,6 +197,3 @@ if api_key:
             feedback = st.radio("Was this response helpful?", ["Yes", "No"], key=f"feedback_{user_query}")
             if feedback == "No":
                 st.text_area("How can we improve?", key=f"feedback_comment_{user_query}")
-
-else:
-    st.warning("Please enter your API key.")
