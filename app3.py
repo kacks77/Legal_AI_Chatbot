@@ -1,10 +1,4 @@
-import openai
-import langdetect
-from langchain.prompts import (
-    ChatPromptTemplate,
-    SystemMessagePromptTemplate,
-    HumanMessagePromptTemplate,
-)
+
 from langchain.schema import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import StreamlitChatMessageHistory
 from langchain_google_genai import ChatGoogleGenerativeAI
